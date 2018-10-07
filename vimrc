@@ -9,6 +9,9 @@ set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 
+set history=1000                " Remember last 1000 commands
+set scrolloff=4                 " Keep at least 4 lines below cursor
+
 " set updatetime=4000 for git update
 set updatetime=100
 
