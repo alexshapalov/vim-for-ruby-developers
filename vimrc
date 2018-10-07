@@ -37,6 +37,10 @@ Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
+
+" fugitive.vim may very well be the best Git wrapper of all time
+Plug 'tpope/vim-fugitive'
+
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-projectionist'
 Plug 'jlanzarotta/bufexplorer'
@@ -118,3 +122,6 @@ let g:rspec_runner = "os_x_iterm2"
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Reload Vim Config Without Having To Restart Editor!
+map <leader>s :source ~/.vimrc<CR>
