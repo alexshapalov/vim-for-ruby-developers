@@ -11,6 +11,7 @@ set autoindent
 
 set history=1000                " Remember last 1000 commands
 set scrolloff=4                 " Keep at least 4 lines below cursor
+set backspace=indent,eol,start
 
 " set updatetime=4000 for git update
 set updatetime=100
@@ -20,7 +21,6 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 
 " nmap - <C-o>
-
 " Search down into subfolders
 "  set path*=**
 set wildmenu
@@ -97,6 +97,9 @@ let g:lightline = {
 " STATUSBAR end
 
 
+" Use the space key as our leader. Put this near the top of your vimrc
+let mapleader = "\<Space>"
+
 " Reload Vim Config Without Having To Restart Editor
 map <leader>s :source ~/.vimrc<CR>
 
@@ -119,6 +122,10 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
+
+map <leader>d :sp db/schema.rb<cr>
+map <leader>h :CtrlP<cr>
+map <Leader>ee :CtrlWW<cr>
 
 let g:rspec_runner = "os_x_iterm2"
 
