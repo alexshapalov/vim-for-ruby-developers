@@ -15,6 +15,7 @@ set backspace=indent,eol,start
 
 " set updatetime=4000 for git update
 set updatetime=100
+set clipboard=unnamed
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
