@@ -18,8 +18,11 @@ set updatetime=100
 set clipboard=unnamed
 
 syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
+" filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
+
+" UTF-8 Support
+set encoding=utf-8
 
 " nmap - <C-o>
 " Search down into subfolders
@@ -71,6 +74,15 @@ Plug 'slim-template/vim-slim'
 " A Vim plugin which shows a git diff in the 'gutter' (sign column)
 Plug 'airblade/vim-gitgutter'
 
+" Py* 
+" Auto-Indentation
+Plug 'vim-scripts/indentpython.vim'
+
+" Auto-Complete
+" Plug 'Valloric/YouCompleteMe'
+Plug 'vim-syntastic/syntastic'
+Plug 'nvie/vim-flake8'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 call plug#end()
 
 " ------------------------------------------------------------------
@@ -136,3 +148,15 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Reload Vim Config Without Having To Restart Editor!
 map <leader>s :source ~/.vimrc<CR>
+
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+let python_highlight_all=1
+syntax on
