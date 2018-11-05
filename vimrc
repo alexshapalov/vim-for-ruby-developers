@@ -16,6 +16,7 @@ set backspace=indent,eol,start
 " set updatetime=4000 for git update
 set updatetime=100
 set clipboard=unnamed
+set autoread
 
 syntax on             " Enable syntax highlighting
 " filetype on           " Enable filetype detection
@@ -29,55 +30,45 @@ set encoding=utf-8
 "  set path*=**
 set wildmenu
 
-call plug#begin()
+let g:auto_save = 1  " enable AutoSave on Vim startup
 
+call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
-
 " Dependencies of snipmate
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'honza/vim-snippets'
 Plug 'jpo/vim-railscasts-theme'
-          
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
+Plug '907th/vim-auto-save'
 
 " fugitive.vim may very well be the best Git wrapper of all time
 Plug 'tpope/vim-fugitive'
-
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-projectionist'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'scrooloose/nerdcommenter'
-
 " Rails rspec 
 Plug 'thoughtbot/vim-rspec'
-
 " Snippets for our use :)
 Plug 'garbas/vim-snipmate'
-
 " Nice file browsing with -
 Plug 'tpope/vim-vinegar'
-
 " Vim for GOlang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " Fuzzy finder for vim (CTRL+P)
 Plug 'kien/ctrlp.vim'
-
 " slim syntax highlighting for vim.
 Plug 'slim-template/vim-slim'
-
 " A Vim plugin which shows a git diff in the 'gutter' (sign column)
 Plug 'airblade/vim-gitgutter'
-
 " Py* 
 " Auto-Indentation
 Plug 'vim-scripts/indentpython.vim'
-
 " Auto-Complete
 " Plug 'Valloric/YouCompleteMe'
 Plug 'vim-syntastic/syntastic'
@@ -137,8 +128,6 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 map <leader>d :sp db/schema.rb<cr>
-map <leader>h :CtrlP<cr>
-map <Leader>ee :CtrlWW<cr>
 
 let g:rspec_runner = "os_x_iterm2"
 
@@ -149,14 +138,15 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " Reload Vim Config Without Having To Restart Editor!
 map <leader>s :source ~/.vimrc<CR>
 
-au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+" au BufNewFile,BufRead *.py
+au BufNewFile, *.py,*.php,*.html,*.js,
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix 
 
 let python_highlight_all=1
 syntax on

@@ -21,10 +21,19 @@ i - insert mode and coursor before word
 yy - copy 
 p - past 
 P - past be coursor
-  
+
+# search in file
 /word
 n - next word 
 N - back word 
+
+# search in dir, for example "def work"
+
+grep -F 'def work' **/*.rb  
+
+# open file in console
+ew and enter 
+
 
 f - find word in text like f + word, f a 
 
