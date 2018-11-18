@@ -1,13 +1,9 @@
-# My Vim Config 
-
-# My VIM Chichi
-
 # Work with text
 
 # Hello VIM
 
 #vimtutor!
-
+  
 hjkl
 w
 e
@@ -16,23 +12,22 @@ b
 w - next word
 e - next end word
 
-a - insert mode and coursor after word
-i - insert mode and coursor before word
+a - insert mode and coursoe after word
+i - insert mode and courdor before word
 yy - copy 
 p - past 
 P - past be coursor
-
-# search in file
+  
 /word
 n - next word 
 N - back word 
 
 # search in dir, for example "def work"
 
-grep -F 'def work' **/*.rb  
+grep -F 'def work' **/*.rb
 
 # open file in console
-ew and enter 
+:ew and enter
 
 
 f - find word in text like f + word, f a 
@@ -45,18 +40,16 @@ u - undo
 q = recoring (what?)
 zz - midle page
 gg - start page
-G - end page
 2G - second string  
 d - delete word 
 dd - delete string 
 d$ - delete to the end of the line 
-c$ - delete and insert mode
 2d - 2 delete
 x - delete chapter 
 rx - change word in normal mode
-ce - change all words in word in insert mode
-ci" - change in ""
-ci{ - change in {}
+
+ci"
+ci{
 . - repeat last command
 
 This is a text "new param"
@@ -71,6 +64,9 @@ A - insert text in the end of the line
 # all modified files in a git repository
 git status | grep modified
 
+# Find and replace
+
+:%s/search/replace/gc
 
 # From Vimtutor
 

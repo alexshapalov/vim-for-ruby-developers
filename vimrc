@@ -17,10 +17,16 @@ set backspace=indent,eol,start
 set updatetime=100
 set clipboard=unnamed
 set autoread
+" Use the space key as our leader. Put this near the top of your vimrc
+let mapleader = "\<Space>"
+set t_Co=256
 
 syntax on             " Enable syntax highlighting
-" filetype on           " Enable filetype detection
+filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+map <leader>r :!ruby %<cr>
 
 " UTF-8 Support
 set encoding=utf-8
@@ -31,6 +37,7 @@ set encoding=utf-8
 set wildmenu
 
 let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:rspec_runner = "os_x_iterm"
 
 call plug#begin()
 Plug 'itchyny/lightline.vim'
@@ -44,7 +51,7 @@ Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
-Plug '907th/vim-auto-save'
+" Plug '907th/vim-auto-save'
 
 " fugitive.vim may very well be the best Git wrapper of all time
 Plug 'tpope/vim-fugitive'
@@ -100,10 +107,6 @@ let g:lightline = {
 " ------------------------------------------------------------------
 " STATUSBAR end
 
-
-" Use the space key as our leader. Put this near the top of your vimrc
-let mapleader = "\<Space>"
-
 " Reload Vim Config Without Having To Restart Editor
 map <leader>s :source ~/.vimrc<CR>
 
@@ -128,15 +131,25 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 map <leader>d :sp db/schema.rb<cr>
-
-let g:rspec_runner = "os_x_iterm2"
+map <leader>w :w<cr>
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
 " Reload Vim Config Without Having To Restart Editor!
 map <leader>s :source ~/.vimrc<CR>
+
+" Stick this in your vimrc to open NERDTree with Ctrl+n 
+map <leader>e :NERDTreeToggle<CR>
 
 " au BufNewFile,BufRead *.py
 au BufNewFile, *.py,*.php,*.html,*.js,
@@ -149,4 +162,3 @@ au BufNewFile, *.py,*.php,*.html,*.js,
     \ set fileformat=unix 
 
 let python_highlight_all=1
-syntax on
