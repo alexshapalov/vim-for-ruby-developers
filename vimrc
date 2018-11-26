@@ -13,6 +13,8 @@ set history=1000                " Remember last 1000 commands
 set scrolloff=4                 " Keep at least 4 lines below cursor
 set backspace=indent,eol,start
 
+set langmenu=en_US.UTF-8
+
 " set updatetime=4000 for git update
 set updatetime=100
 set clipboard=unnamed
