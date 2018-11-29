@@ -134,7 +134,10 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 map <leader>d :sp db/schema.rb<cr>
 map <leader>w :w<cr>
-nmap <Leader>g <C-w>w
+nmap <Leader>f <C-w>w
+nmap <Leader>g <C-p>
+nmap <Leader>i <C-i>
+nmap <Leader>o <C-o>
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
