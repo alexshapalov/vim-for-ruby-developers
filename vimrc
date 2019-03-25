@@ -5,6 +5,8 @@ colorscheme Tomorrow-Night-Eighties
 set nocompatible              " be iMproved, required
 set mouse=a
 
+set title
+
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
@@ -41,7 +43,15 @@ set wildmenu
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:rspec_runner = "os_x_iterm"
 
+set cursorline
+hi CursorLine guibg=Grey40
+" hi CursorLine term=bold cterm=bold guibg=Grey40
 call plug#begin()
+
+imap jj <Esc>
+
+set relativenumber
+
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
 " Dependencies of snipmate
@@ -83,6 +93,13 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'nvie/vim-flake8'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'tpope/vim-unimpaired'
+Plug 'itmammoth/run-rspec.vim'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'ncm2/ncm2'  " awesome autocomplete plugin
+
+Plug 'maralla/completor.vim'    
+Plug 'mileszs/ack.vim'
 call plug#end()
 
 " ------------------------------------------------------------------
@@ -127,7 +144,9 @@ filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
 " RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>t :RunSpec<CR>
+
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
@@ -138,6 +157,8 @@ nmap <Leader>f <C-w>w
 nmap <Leader>g <C-p>
 nmap <Leader>i <C-i>
 nmap <Leader>o <C-o>
+map <leader>a :A<cr>
+map <leader>q :q<cr>
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -156,6 +177,7 @@ map <leader>s :source ~/.vimrc<CR>
 
 " Stick this in your vimrc to open NERDTree with Ctrl+n 
 map <leader>e :NERDTreeToggle<CR>
+" map <Leader>v :NERDTree-o<CR>
 
 " au BufNewFile,BufRead *.py
 au BufNewFile, *.py,*.php,*.html,*.js,
@@ -168,3 +190,19 @@ au BufNewFile, *.py,*.php,*.html,*.js,
     \ set fileformat=unix 
 
 let python_highlight_all=1
+
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
