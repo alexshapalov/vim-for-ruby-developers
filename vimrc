@@ -1,7 +1,9 @@
-set guifont=Monaco:h20
+set guifont=Monaco:h16
 set number
-colorscheme Tomorrow-Night-Eighties
+" colorscheme Tomorrow-Night-Eighties
 " colorscheme railscasts
+colorscheme kuroi
+set background=dark
 set nocompatible              " be iMproved, required
 set mouse=a
 
@@ -24,6 +26,7 @@ set autoread
 " Use the space key as our leader. Put this near the top of your vimrc
 let mapleader = "\<Space>"
 set t_Co=256
+set termguicolors
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -44,62 +47,80 @@ let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:rspec_runner = "os_x_iterm"
 
 set cursorline
-hi CursorLine guibg=Grey40
+" hi CursorLine guibg=Grey40
 " hi CursorLine term=bold cterm=bold guibg=Grey40
-call plug#begin()
+call plug#begin() 
 
-imap jj <Esc>
+imap jk <Esc>
 
 set relativenumber
 
-Plug 'itchyny/lightline.vim'
-Plug 'junegunn/vim-easy-align'
-" Dependencies of snipmate
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'honza/vim-snippets'
-Plug 'jpo/vim-railscasts-theme'
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-rake'
-Plug 'tpope/vim-bundler'
-" Plug '907th/vim-auto-save'
+ Plug 'itchyny/lightline.vim'
+ Plug 'junegunn/vim-easy-align'
+ " Dependencies of snipmate
+ Plug 'MarcWeber/vim-addon-mw-utils'
+ Plug 'tomtom/tlib_vim'
+ Plug 'honza/vim-snippets'
+ Plug 'jpo/vim-railscasts-theme'
+ Plug 'tpope/vim-rails'
+ Plug 'vim-ruby/vim-ruby'
+ Plug 'tpope/vim-rake'
+ Plug 'tpope/vim-bundler'
+ " Plug '907th/vim-auto-save'
 
-" fugitive.vim may very well be the best Git wrapper of all time
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-projectionist'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'scrooloose/nerdcommenter'
-" Rails rspec 
-Plug 'thoughtbot/vim-rspec'
-" Snippets for our use :)
-Plug 'garbas/vim-snipmate'
-" Nice file browsing with -
-Plug 'tpope/vim-vinegar'
+" " fugitive.vim may very well be the best Git wrapper of all time
+ Plug 'tpope/vim-fugitive'
+ Plug 'scrooloose/nerdtree'
+ Plug 'tpope/vim-projectionist'
+ Plug 'jlanzarotta/bufexplorer'
+ Plug 'scrooloose/nerdcommenter'
+ " Rails rspec 
+ Plug 'thoughtbot/vim-rspec'
+ " Snippets for our use :)
+ Plug 'garbas/vim-snipmate'
+ " Nice file browsing with -
+ Plug 'tpope/vim-vinegar'
+
 " Vim for GOlang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Fuzzy finder for vim (CTRL+P)
-Plug 'kien/ctrlp.vim'
-" slim syntax highlighting for vim.
-Plug 'slim-template/vim-slim'
-" A Vim plugin which shows a git diff in the 'gutter' (sign column)
-Plug 'airblade/vim-gitgutter'
-" Py* 
-" Auto-Indentation
-Plug 'vim-scripts/indentpython.vim'
-" Auto-Complete
-" Plug 'Valloric/YouCompleteMe'
-Plug 'vim-syntastic/syntastic'
-Plug 'nvie/vim-flake8'
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
-Plug 'tpope/vim-unimpaired'
-Plug 'itmammoth/run-rspec.vim'
-" Plug 'davidhalter/jedi-vim'
-" Plug 'ncm2/ncm2'  " awesome autocomplete plugin
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" Plug 'mdempsky/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" Plug 'mdempsky/gocode', {'rtp': 'vim/'}
+" Plug 'visualfc/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+" Plug 'stamblerre/gocode', {'rtp': 'vim/'}
+Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'fatih/vim-go'
 
-Plug 'maralla/completor.vim'    
-Plug 'mileszs/ack.vim'
+" Or install latest release tag
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+" " Fuzzy finder for vim (CTRL+P)
+ Plug 'kien/ctrlp.vim'
+" " slim syntax highlighting for vim.
+ Plug 'slim-template/vim-slim'
+" " A Vim plugin which shows a git diff in the 'gutter' (sign column)
+ Plug 'airblade/vim-gitgutter'
+" " Py* 
+" " Auto-Indentation
+ Plug 'vim-scripts/indentpython.vim'
+" " Auto-Complete
+ Plug 'vim-syntastic/syntastic'
+ Plug 'nvie/vim-flake8'
+ Plug 'python-mode/python-mode', { 'branch': 'develop' }
+ Plug 'tpope/vim-unimpaired'
+ Plug 'itmammoth/run-rspec.vim'
+
+ Plug 'maralla/completor.vim'    
+ Plug 'mileszs/ack.vim'
+ Plug 'tpope/vim-commentary'
+ Plug 'junegunn/gv.vim'
+
+ Plug 'JamshedVesuna/vim-markdown-preview'
+ Plug 'burnettk/vim-angular'
+ Plug 'leafgarland/typescript-vim'
+ Plug 'slim-template/vim-slim'
+ Plug 'digitaltoad/vim-pug'
+
 call plug#end()
 
 " ------------------------------------------------------------------
@@ -160,16 +181,12 @@ nmap <Leader>o <C-o>
 map <leader>a :A<cr>
 map <leader>q :q<cr>
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
-let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
 " Reload Vim Config Without Having To Restart Editor!
@@ -205,4 +222,9 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap F :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+au filetype go inoremap <buffer> . .<C-x><C-o>
+let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save     
+let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor    
+
