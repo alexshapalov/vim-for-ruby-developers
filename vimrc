@@ -2,7 +2,10 @@ set guifont=Monaco:h16
 set number
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme railscasts
+" colorscheme kuroi
 colorscheme kuroi
+
+colorscheme one
 set background=dark
 set nocompatible              " be iMproved, required
 set mouse=a
@@ -14,7 +17,7 @@ set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
 
 set history=1000                " Remember last 1000 commands
-set scrolloff=4                 " Keep at least 4 lines below cursor
+set scrolloff=6                 " Keep at least 4 lines below cursor
 set backspace=indent,eol,start
 
 set langmenu=en_US.UTF-8
@@ -33,7 +36,11 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-map <leader>r :!ruby %<cr>
+set autowrite     " Automatically :write before running commands
+
+" map <leader>i go
+map <leader>r :! clear; ruby %<cr>
+map <leader>u :! clear; python %<cr>
 
 " UTF-8 Support
 set encoding=utf-8
@@ -51,8 +58,8 @@ set cursorline
 " hi CursorLine term=bold cterm=bold guibg=Grey40
 call plug#begin() 
 
-imap jk <Esc>
-
+imap ; <Esc>
+"imap <leader>j <Esc>
 set relativenumber
 
  Plug 'itchyny/lightline.vim'
@@ -101,26 +108,33 @@ Plug 'fatih/vim-go'
 " " A Vim plugin which shows a git diff in the 'gutter' (sign column)
  Plug 'airblade/vim-gitgutter'
 " " Py* 
+
 " " Auto-Indentation
- Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/indentpython.vim'
+
 " " Auto-Complete
- Plug 'vim-syntastic/syntastic'
- Plug 'nvie/vim-flake8'
- Plug 'python-mode/python-mode', { 'branch': 'develop' }
- Plug 'tpope/vim-unimpaired'
+ " Plug 'vim-syntastic/syntastic'
+
+ " Plug 'nvie/vim-flake8'
+ " Plug 'python-mode/python-mode', { 'branch': 'develop' }
+ " Plug 'tpope/vim-unimpaired'
  Plug 'itmammoth/run-rspec.vim'
 
- Plug 'maralla/completor.vim'    
+ " Plug 'maralla/completor.vim'    
  Plug 'mileszs/ack.vim'
  Plug 'tpope/vim-commentary'
  Plug 'junegunn/gv.vim'
 
  Plug 'JamshedVesuna/vim-markdown-preview'
- Plug 'burnettk/vim-angular'
- Plug 'leafgarland/typescript-vim'
- Plug 'slim-template/vim-slim'
- Plug 'digitaltoad/vim-pug'
+" Plug 'burnettk/vim-angular'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'slim-template/vim-slim'
+" Plug 'digitaltoad/vim-pug'
 
+" Syntax Highlight for Vue.js components
+" Plug 'posva/vim-vue'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'flrnprz/plastic.vim'
 call plug#end()
 
 " ------------------------------------------------------------------
@@ -162,7 +176,7 @@ let NERDTreeShowHidden=1
 set omnifunc=csscomplete#CompleteCSS
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
+" set omnifunc=syntaxcomplete#Complete
 
 " RSpec.vim mappings
 " map <Leader>t :call RunCurrentSpecFile()<CR>
@@ -228,3 +242,7 @@ au filetype go inoremap <buffer> . .<C-x><C-o>
 let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save     
 let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor    
 
+" Store the bookmarks file
+let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+" Show the bookmarks table on startup
+let NERDTreeShowBookmarks=1
