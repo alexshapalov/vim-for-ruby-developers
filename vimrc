@@ -1,27 +1,23 @@
-set guifont=Monaco:h16
-set number
 " colorscheme Tomorrow-Night-Eighties
 " colorscheme railscasts
 " colorscheme kuroi
-colorscheme kuroi
+" colorscheme kuroi
+" colorscheme one
+colorscheme Tomorrow-My
 
-colorscheme one
+set guifont=Monaco:h10
+set number
 set background=dark
 set nocompatible              " be iMproved, required
 set mouse=a
-
 set title
-
 set expandtab
 set tabstop=2 shiftwidth=2 softtabstop=2
 set autoindent
-
-set history=1000                " Remember last 1000 commands
+set history=3000                " Remember last 1000 commands
 set scrolloff=6                 " Keep at least 4 lines below cursor
 set backspace=indent,eol,start
-
 set langmenu=en_US.UTF-8
-
 " set updatetime=4000 for git update
 set updatetime=100
 set clipboard=unnamed
@@ -29,38 +25,36 @@ set autoread
 " Use the space key as our leader. Put this near the top of your vimrc
 let mapleader = "\<Space>"
 set t_Co=256
+set colorcolumn=80
 set termguicolors
+set hlsearch
+set autowrite     " Automatically :write before running commands
+" UTF-8 Support
+set encoding=utf-8
+" nmap - <C-o>
+" Search down into subfolders
+"  set path*=**
+set wildmenu
+set cursorline
+" hi CursorLine guibg=Grey40
+" hi CursorLine term=bold cterm=bold guibg=Grey40
+set relativenumber
 
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-set autowrite     " Automatically :write before running commands
-
 " map <leader>i go
 map <leader>r :! clear; ruby %<cr>
 map <leader>u :! clear; python %<cr>
 
-" UTF-8 Support
-set encoding=utf-8
-
-" nmap - <C-o>
-" Search down into subfolders
-"  set path*=**
-set wildmenu
-
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:rspec_runner = "os_x_iterm"
 
-set cursorline
-" hi CursorLine guibg=Grey40
-" hi CursorLine term=bold cterm=bold guibg=Grey40
-call plug#begin() 
-
 imap ; <Esc>
-"imap <leader>j <Esc>
-set relativenumber
+
+call plug#begin() 
 
  Plug 'itchyny/lightline.vim'
  Plug 'junegunn/vim-easy-align'
@@ -75,7 +69,7 @@ set relativenumber
  Plug 'tpope/vim-bundler'
  " Plug '907th/vim-auto-save'
 
-" " fugitive.vim may very well be the best Git wrapper of all time
+ " fugitive.vim may very well be the best Git wrapper of all time
  Plug 'tpope/vim-fugitive'
  Plug 'scrooloose/nerdtree'
  Plug 'tpope/vim-projectionist'
@@ -95,18 +89,18 @@ set relativenumber
 " Plug 'mdempsky/gocode', {'rtp': 'vim/'}
 " Plug 'visualfc/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 " Plug 'stamblerre/gocode', {'rtp': 'vim/'}
-Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
-Plug 'fatih/vim-go'
+  Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+  Plug 'fatih/vim-go'
 
 " Or install latest release tag
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
- Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 " " Fuzzy finder for vim (CTRL+P)
- Plug 'kien/ctrlp.vim'
+  Plug 'kien/ctrlp.vim'
 " " slim syntax highlighting for vim.
- Plug 'slim-template/vim-slim'
+  Plug 'slim-template/vim-slim'
 " " A Vim plugin which shows a git diff in the 'gutter' (sign column)
- Plug 'airblade/vim-gitgutter'
+  Plug 'airblade/vim-gitgutter'
 " " Py* 
 
 " " Auto-Indentation
@@ -118,14 +112,14 @@ Plug 'fatih/vim-go'
  " Plug 'nvie/vim-flake8'
  " Plug 'python-mode/python-mode', { 'branch': 'develop' }
  " Plug 'tpope/vim-unimpaired'
- Plug 'itmammoth/run-rspec.vim'
+  Plug 'itmammoth/run-rspec.vim'
 
  " Plug 'maralla/completor.vim'    
- Plug 'mileszs/ack.vim'
- Plug 'tpope/vim-commentary'
- Plug 'junegunn/gv.vim'
+  Plug 'mileszs/ack.vim'
+  Plug 'tpope/vim-commentary'
+  Plug 'junegunn/gv.vim'
 
- Plug 'JamshedVesuna/vim-markdown-preview'
+  Plug 'JamshedVesuna/vim-markdown-preview'
 " Plug 'burnettk/vim-angular'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'slim-template/vim-slim'
@@ -135,7 +129,15 @@ Plug 'fatih/vim-go'
 " Plug 'posva/vim-vue'
   Plug 'jiangmiao/auto-pairs'
   Plug 'flrnprz/plastic.vim'
+
+  Plug 'rhysd/reply.vim', { 'on': ['Repl', 'ReplAuto'] }
+
+  Plug 'flrnd/candid.vim'
+
+  Plug 'majutsushi/tagbar'
+
 call plug#end()
+
 
 " ------------------------------------------------------------------
 " STATUSBAR Settingss
@@ -164,7 +166,6 @@ let g:lightline = {
 " Reload Vim Config Without Having To Restart Editor
 map <leader>s :source ~/.vimrc<CR>
 
-set hlsearch
 
 " Always open the tree when booting Vim, but don’t focus it:
 autocmd VimEnter * NERDTree
@@ -194,6 +195,7 @@ nmap <Leader>i <C-i>
 nmap <Leader>o <C-o>
 map <leader>a :A<cr>
 map <leader>q :q<cr>
+map <leader>c go
 
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -243,6 +245,8 @@ let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save
 let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor    
 
 " Store the bookmarks file
-let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
+" let NERDTreeBookmarksFile=expand("$HOME/.vim-NERDTreeBookmarks")
 " Show the bookmarks table on startup
 let NERDTreeShowBookmarks=1
+
+nmap <F8> :TagbarToggle<CR>
